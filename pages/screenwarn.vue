@@ -1,22 +1,30 @@
 <script setup lang="ts">
-    import { ref, onMounted, onBeforeUnmount } from 'vue';
-    const ScreenWidth = ref(false);
+import { ref, onMounted, onBeforeUnmount } from "vue";
 
-    const CheckScreenWidth = () => {
-        ScreenWidth.value = window.innerHeight <= 704
-    }
-    onMounted(() => {
-        CheckScreenWidth();
-        window.addEventListener('resize', CheckScreenWidth);
-    });
-    onBeforeUnmount(() => {
-        CheckScreenWidth();
-        window.removeEventListener('resize', CheckScreenWidth);
-    });
+// Reactive flag for screen width condition
+const isSmallScreen = ref<boolean>(false);
+
+const checkScreenWidth = () => {
+  isSmallScreen.value = window.innerWidth <= screen.width / 2;
+};
+
+onMounted(() => {
+  checkScreenWidth();
+  window.addEventListener("resize", checkScreenWidth);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", checkScreenWidth);
+});
 </script>
 
 <template>
-  <div v-if="ScreenWidth" class="fixed h-full w-full bg-white text-black p-3 z-50">
-    <p class="font-bold text-center fixed top-70 text-3xl">Change to PC or full screen for better experience.</p>
+  <div
+    v-if="isSmallScreen"
+    class="fixed inset-0 bg-white text-black flex items-center justify-center z-50 p-6"
+  >
+    <p class="font-bold text-center text-2xl sm:text-3xl">
+      Change to PC or full screen for better experience.
+    </p>
   </div>
 </template>

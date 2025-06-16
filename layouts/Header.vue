@@ -29,8 +29,8 @@ const isActive = (path: string) => {
       :to="item.path"
       class="px-4 py-2 border-b-2 transition-all duration-200"
       :class="{
-        'bg-gray-800 border-white': isActive(item.path),
-        'border-transparent hover:bg-gray-800 hover:border-white': !isActive(item.path)
+        'dark:bg-gray-800 border-white bg-gray-200': isActive(item.path),
+        'border-transparent hover:dark:bg-gray-800 hover:bg-gray-200 hover:border-white': !isActive(item.path)
       }">
       {{ item.name }}</NuxtLink>
     </div>
