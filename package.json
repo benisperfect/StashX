@@ -16,11 +16,12 @@
     "axios": "^1.9.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "express": "^5.1.0",
     "formidable": "^3.5.4",
     "lucide-vue-next": "^0.511.0",
     "multer": "^2.0.1",
     "nuxt": "^3.17.4",
-    "reka-ui": "^2.3.0",
+    "reka-ui": "^2.3.1",
     "shadcn-nuxt": "^2.2.0",
     "tailwind-merge": "^3.3.0",
     "tailwindcss": "^4.1.8",
@@ -35,9 +36,12 @@
     "@iconify-json/radix-icons": "^1.2.2",
     "@iconify/vue": "^5.0.0",
     "@nuxtjs/color-mode": "^3.5.2",
+    "@types/express": "^5.0.3",
     "@types/formidable": "^3.4.5",
     "@types/multer": "^1.4.13",
     "@vue/tsconfig": "^0.7.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3",
     "vue-tsc": "^2.2.10"
   }
 }

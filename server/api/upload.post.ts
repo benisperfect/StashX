@@ -1,17 +1,23 @@
-import formidable from 'formidable'
-import { writeFile } from 'fs/promises'
+import formidable from "formidable";
+import { writeFile } from "fs/promises";
 
 export default defineEventHandler(async (event) => {
-  const form = formidable({ multiples: false })
+  const form = formidable({ multiples: false });
 
-  const [fields, files] = await form.parse(event.node.req)
+  const [fields, files] = await form.parse(event.node.req);
 
-  if (!files.file || !files.file[0]) {
-    throw new Error('No file uploaded');
+  if (!files.file || files.file.length === 0) {
+    throw new Error("No file uploaded");
   }
-  const file = files.file[0]
-  const data = await import('fs/promises').then(fs => fs.readFile(file.filepath))
-  await writeFile(`./public/uploads/${file.originalFilename}`, data)
 
-  return { success: true, path: `/uploads/${file.originalFilename}` }
-})
+  const savePath:string[] = [];
+
+  for (const file of files.file) {
+    const data = await import('fs/promises').then(fs => fs.readFile(file.filepath));
+    const path = `./public/uploads/${file.originalFilename}`;
+    await writeFile(path, data);
+    savePath.push(`/uploads/${file.originalFilename}`);
+}
+return { success: true, paths: savePath };
+});
+

@@ -2,6 +2,12 @@
 import { Button } from "@/components/ui/button";
 import Feedback from "@/pages/feedback.vue";
 import webDemo from "@/pages/web_demo.vue";
+
+const items = ref([
+  { name: "Get Started Free", path: "/" },
+  { name: "Log In", path: "/login" },
+  { name: "Sign In", path: "/signin" },
+]);
 </script>
 
 <template>
@@ -15,14 +21,8 @@ import webDemo from "@/pages/web_demo.vue";
         fast, secure, and always on.
       </p>
       <div class="flex flex-row gap-2">
-        <NuxtLink>
-          <Button class="p-6 mt-4 ml-6">Get Started Free</Button>
-        </NuxtLink>
-        <NuxtLink>
-          <Button class="p-6 mt-4 ml-6">Log In</Button>
-        </NuxtLink>
-        <NuxtLink>
-          <Button class="p-6 mt-4 ml-6">Sign In</Button>
+        <NuxtLink v-for="item in items" :key="item.name" :to="item.path">
+          <Button class="p-6 mt-4 ml-6">{{ item.name }}</Button>
         </NuxtLink>
       </div>
       <div class="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] mt-6">

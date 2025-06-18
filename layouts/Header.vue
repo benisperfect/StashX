@@ -6,7 +6,7 @@ const route = useRoute();
 const navItems = ref([
   { name: 'Home', path: '/' },
   { name: 'Upload', path: '/upload' },
-  { name: 'Show Files', path: '/readfiles' },
+  { name: 'Your Files', path: '/readfiles' },
   { name: 'Settings', path: '/settings' },
   { name: 'About', path: '/about' },
 ]);

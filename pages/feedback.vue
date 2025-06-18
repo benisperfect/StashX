@@ -1,7 +1,7 @@
 <template>
   <div class="grid grid-rows-3 gap-4 md:w-3/5">
     <div
-      class="bg-gray-600 p-3 mr-6 ml-6 rounded rounded-1xl border-l-6 border-blue-500"
+      class="bg-gray-400 p-3 mr-6 ml-6 rounded rounded-1xl border-l-6 border-blue-500"
     >
       <p>
         “As a freelance designer, I use StashX to manage all my client files
@@ -10,7 +10,7 @@
       </p>
     </div>
     <div
-      class="bg-gray-600 p-3 mr-6 ml-6 rounded rounded-1xl border-l-6 border-blue-500"
+      class="bg-gray-400 p-3 mr-6 ml-6 rounded rounded-1xl border-l-6 border-blue-500"
     >
       <p>
         “Perfect for backing up my college projects — and no more carrying USB
@@ -19,7 +19,7 @@
       </p>
     </div>
     <div
-      class="bg-gray-600 p-3 mr-6 ml-6 rounded rounded-1xl border-l-6 border-blue-500"
+      class="bg-gray-400 p-3 mr-6 ml-6 rounded rounded-1xl border-l-6 border-blue-500"
     >
       <p>
         “Super clean interface. I uploaded my work files and accessed them from

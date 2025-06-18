@@ -1,15 +1,34 @@
 <script lang="ts" setup>
-import { Slider } from "@/components/ui/slider";
-import { Switch } from "@/components/ui/switch";
+import { Slider } from "../components/ui/slider";
+import { Switch } from "../components/ui/switch";
 import { Icon } from "@iconify/vue";
-import { ref } from "vue";
+import { ref, onMounted, watch } from "vue";
 
 const SliderValue = ref([20]);
 const isDark = ref(true);
 const toggleTheme = () => {
   isDark.value = !isDark.value;
   document.documentElement.classList.toggle("dark", isDark.value);
+  localStorage.setItem('theme', isDark.value ? 'dark' : 'light');
 };
+
+onMounted(() => {
+  const savedTheme = localStorage.getItem("theme");
+  isDark.value = savedTheme === "dark"; // if null or 'light', set to false
+  document.documentElement.classList.toggle("dark", isDark.value);
+
+const savedSlider = localStorage.getItem("sliderValue");
+  if (savedSlider) {
+    try {
+      SliderValue.value = JSON.parse(savedSlider);
+    } catch (e) {
+      console.error("Failed to parse saved slider value:", e);
+    }
+  }
+});
+watch(SliderValue, (newVal) => {
+  localStorage.setItem("sliderValue", JSON.stringify(newVal));
+});
 </script>
 
 <template>
