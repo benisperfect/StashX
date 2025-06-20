@@ -8,7 +8,7 @@
     <p class="text-xs text-gray-600">❤️‍🔥 Powered by Ben Inc. ❤️‍🔥</p>
     <p class="text-gray-400 text-xs">© 2025 StashX</p>
   </div>
-  <div class="text-center text-gray-600">
+  <div class="text-center text-gray-600 pb-4">
     <p class="footer-nav text-xs">
       <a href="#">About</a> • <a href="#">Contact</a> •
       <a href="#">Privacy Policy</a> • <a href="#">Terms of Service</a>

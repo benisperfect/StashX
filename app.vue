@@ -7,10 +7,10 @@ import Header from "./layouts/Header.vue";
 <template>
   <ScreenWarn />
   <div
-    class="min-h-screen bg-gray-200 text-black dark:bg-gray-800 dark:text-white transition-colors pb-4"
+    class="min-h-screen bg-gray-200 text-black dark:bg-gray-800 dark:text-white transition-colors"
   >
-    <Header />
+    <!-- <Header /> -->
     <NuxtPage />
-    <Footer />
+    <!-- <Footer /> -->
   </div>
 </template>
