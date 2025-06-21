@@ -1,35 +1,11 @@
 <script lang="ts" setup>
-import { ref, computed } from "vue";
 import { Button } from "@/components/ui/button";
-import Header from "@/layouts/Header.vue";
-import Footer from "@/layouts/Footer.vue";
 import Feedback from "@/pages/feedback.vue";
 import webDemo from "@/pages/web_demo.vue";
-
-const items = ref([
-  { name: "Get Started Free", path: "/signin", isActive: false },
-  { name: "Log In", path: "/login", isActive: false },
-  { name: "Sign In", path: "/signin", isActive: false },
-]);
-
-const ActivateItem = (index: number) => {
-  items.value.forEach((item, i) => {
-    item.isActive = i === index;
-  });
-
-  console.log("Active items:");
-  items.value.forEach((item) => {
-    console.log(`${item.name}: ${item.isActive}`);
-  });
-};
-
-const toggleVisibility = computed(() => {
-  return items.value.some(item => item.isActive);
-})
+import { items, ActivateItem } from "@/composables/toggleHFVisibility";
 </script>
 
 <template>
-  <Header v-show="!toggleVisibility" />
   <div class="p-2 m-3 grid grid-cols-2">
     <div>
       <h1 class="text-4xl text-left font-bold ml-3 mb-4">
@@ -80,5 +56,4 @@ const toggleVisibility = computed(() => {
   </div>
   <webDemo class="p-6" />
   <Feedback />
-  <Footer v-show="!toggleVisibility" />
 </template>

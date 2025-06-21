@@ -63,7 +63,7 @@ const sumbitSignIn = async () => {
                         <Label for="password">Password</Label>
                         <Input id="password" type="password" />
                     </div>
-                    <Button type="submit" class="w-full"> Create an account </Button>
+                    <Button @click="sumbitSignIn" type="submit" class="w-full"> Create an account </Button>
                     <Button variant="outline" class="w-full"> Sign up with GitHub </Button>
                 </div>
                 <div class="mt-4 text-center text-sm">
