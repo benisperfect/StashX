@@ -2,7 +2,10 @@
 import ScreenWarn from "@/pages/screenwarn.vue";
 import Footer from "./layouts/Footer.vue";
 import Header from "./layouts/Header.vue";
-import { toggleVisibility } from "@/composables/toggleHFVisibility";
+import { useVisibilityControl } from "@/composables/toggleHFVisibility";
+import { onMounted } from "vue";
+
+useVisibilityControl();
 </script>
 
 <template>

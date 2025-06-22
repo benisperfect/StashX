@@ -21,7 +21,7 @@ import { items, ActivateItem } from "@/composables/toggleHFVisibility";
             class="p-6 mt-4 ml-6"
             :class="
               item.isActive
-                ? 'bg-blue-500 text-white'
+                ? 'bg-gray-300 text-black'
                 : 'bg-gray-300 text-black'
             "
             @click="ActivateItem(i)"

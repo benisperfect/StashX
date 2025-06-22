@@ -1,0 +1,35 @@
+import { defineEventHandler, readBody } from "h3";
+import { readFile } from "fs/promises";
+
+const userPath = "./server/data/users.json";
+
+export default defineEventHandler(async (event) => {
+  const body = await readBody(event);
+  const { username, password } = body;
+
+  try {
+    const file = await readFile(userPath, "utf-8");
+    const users: { username: string; password: string }[] = JSON.parse(file);
+
+    const user = users.find(
+      (u) => u.username === username && u.password === password
+    );
+
+    if (!user) {
+      return {
+        success: false,
+        message: "Invalid username or password",
+      };
+    }
+
+    return {
+      success: true,
+      message: "Login successful",
+    };
+  } catch (err) {
+    return {
+      success: false,
+      message: "Error reading user data",
+    };
+  }
+});

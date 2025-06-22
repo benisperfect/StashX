@@ -8,7 +8,34 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { reactive } from "vue";
+import { useRouter } from "vue-router";
+
+const loginInfo = reactive({
+  username: "",
+  password: "",
+});
+
+const router = useRouter();
+
+const submitLogin = async (e: Event) => {
+  e.preventDefault();
+  const res = await fetch("/api/auth/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(loginInfo),
+  });
+
+  const result = await res.json();
+  if (result.success) {
+    alert("Login successful!");
+    router.push("/");
+  } else {
+    alert(result.message || "Login failed");
+  }
+};
 </script>
 
 <template>
@@ -23,11 +50,12 @@ import { Label } from "@/components/ui/label";
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form class="space-y-6">
+        <form class="space-y-6" @submit="submitLogin">
           <div class="flex flex-col gap-4">
             <Button
               variant="outline"
               class="w-full flex items-center gap-2 justify-center"
+              type="button"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -44,6 +72,7 @@ import { Label } from "@/components/ui/label";
             <Button
               variant="outline"
               class="w-full flex items-center gap-2 justify-center"
+              type="button"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -67,30 +96,37 @@ import { Label } from "@/components/ui/label";
           </div>
           <div class="space-y-4">
             <div class="space-y-2">
-              <Label html-for="email">Email</Label>
+              <label for="email" class="block text-sm font-medium text-gray-700">Username</label>
               <Input
-                id="email"
-                type="email"
-                placeholder="m@example.com"
+                id="username"
+                type="username"
+                placeholder="Robinson"
                 required
+                v-model="loginInfo.username"
+                autocomplete="username"
               />
             </div>
             <div class="space-y-2">
-              <div class="flex items-center justify-between">
-                <Label html-for="password">Password</Label>
-                <a href="#" class="text-sm underline-offset-4 hover:underline">
-                  Forgot your password?
-                </a>
-              </div>
-              <Input id="password" type="password" required />
+              <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+              <Input
+                id="password"
+                type="password"
+                placeholder="Enter your password"
+                required
+                v-model="loginInfo.password"
+                autocomplete="current-password"
+              />
+              <a href="#" class="text-sm underline-offset-4 hover:underline ml-2 block mt-1">
+                Forgot your password?
+              </a>
             </div>
-            <Button type="submit" class="w-full"> Login </Button>
+            <Button type="submit" class="w-full">
+              Login
+            </Button>
           </div>
           <div class="text-center text-sm">
             Don't have an account?
-            <NuxtLink to="/signin">
-              <a href="#" class="underline underline-offset-4"> Sign up </a>
-            </NuxtLink>
+            <NuxtLink to="/signin" class="underline underline-offset-4"> Sign up </NuxtLink>
           </div>
         </form>
       </CardContent>
