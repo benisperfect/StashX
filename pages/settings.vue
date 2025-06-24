@@ -42,16 +42,5 @@ watch(SliderValue, (newVal) => {
         {{ SliderValue[0] }}
       </p>
     </div>
-    <div>
-      <p>Dark/Light Toggle</p>
-      <div class="mt-2">
-        <Switch :model-value="isDark" @update:model-value="toggleTheme">
-          <template #thumb>
-            <Icon v-if="isDark" icon="lucide:moon" class="size-4" />
-            <Icon v-else icon="lucide:sun" class="size-4" />
-          </template>
-        </Switch>
-      </div>
-    </div>
   </div>
 </template>

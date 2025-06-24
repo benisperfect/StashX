@@ -1,9 +1,18 @@
 <script setup lang="ts">
 import { ref, reactive, watch, onMounted } from "vue";
 import { CircleUser } from "lucide-vue-next";
+import { Icon } from "@iconify/vue";
+import { Switch } from "@/components/ui/switch";
 import { useRoute } from "vue-router";
 
 const route = useRoute();
+const isDark = ref(true);
+
+const toggleTheme = () => {
+  isDark.value = !isDark.value;
+  document.documentElement.classList.toggle("dark", isDark.value);
+  localStorage.setItem("theme", isDark.value ? "dark" : "light");
+};
 
 const userGreeeting = reactive({
   name: "",
@@ -33,6 +42,9 @@ onMounted(() => {
   if (route.path === "/") {
     getUsergreeting();
   }
+  const savedTheme = localStorage.getItem("theme");
+  isDark.value = savedTheme === "dark"; // if null or 'light', set to false
+  document.documentElement.classList.toggle("dark", isDark.value);
 });
 
 watch(
@@ -58,9 +70,17 @@ const isActive = (path: string) => {
 
 <template>
   <div
-    class="flex flex-row items-center justify-center bg-gray-300 dark:bg-gray-900 text-gray-900 dark:text-gray-100 pt-2"
+    class="grid grid-cols-[1fr_auto] items-center bg-gray-300 dark:bg-gray-900 text-gray-900 dark:text-gray-100 pt-2"
   >
-    <h1 class="text-5xl font-bold">StashX</h1>
+    <h1 class="text-5xl font-bold justify-self-center pl-17">StashX</h1>
+    <div class="pr-5 justify-self-end">
+      <Switch :model-value="isDark" @update:model-value="toggleTheme">
+        <template #thumb>
+          <Icon v-if="isDark" icon="lucide:moon" class="size-4" />
+          <Icon v-else icon="lucide:sun" class="size-4" />
+        </template>
+      </Switch>
+    </div>
   </div>
 
   <div
@@ -68,9 +88,9 @@ const isActive = (path: string) => {
   >
     <div class="flex flex-row justify-center items-center">
       <CircleUser class="mr-2" />
-      <p>Hi, {{ userGreeeting.name }}</p>
+      <p class="text-2xl">Hi, {{ userGreeeting.name }}</p>
     </div>
-    <div class="flex flex-row items-center justify-center gap-1 mt-6">
+    <div class="flex flex-row items-center justify-center gap-1 mt-1">
       <NuxtLink
         v-for="item in navItems"
         :key="item.name"
