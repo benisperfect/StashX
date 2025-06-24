@@ -1,4 +1,4 @@
-import { defineEventHandler, readBody } from "h3";
+import { defineEventHandler, readBody, setCookie } from "h3";
 import { readFile } from "fs/promises";
 
 const userPath = "./server/data/users.json";
@@ -14,6 +14,14 @@ export default defineEventHandler(async (event) => {
     const user = users.find(
       (u) => u.username === username && u.password === password
     );
+
+    if (user) {
+      setCookie(event, 'username', user.username, {
+        httpOnly: true,
+        path: '/',
+        maxAge: 60 * 60 * 24,
+      })
+    }
 
     if (!user) {
       return {

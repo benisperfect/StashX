@@ -12,5 +12,40 @@
     "firstName": "Max",
     "lastName": "Robinson",
     "username": "maxrobinson"
+  },
+  {
+    "email": "jenniferreed@gmail.com",
+    "password": "789",
+    "firstName": "Jennifer",
+    "lastName": "Reed",
+    "username": "jenniferreed"
+  },
+  {
+    "email": "benwinston@gmail.com",
+    "password": "123",
+    "firstName": "Ben",
+    "lastName": "Winston",
+    "username": "benwinston"
+  },
+  {
+    "email": "nicktyson@gmail.com",
+    "password": "123",
+    "firstName": "nick",
+    "lastName": "tyson",
+    "username": "nicktyson"
+  },
+  {
+    "email": "maxlawrence@gmail.com",
+    "password": "123",
+    "firstName": "max",
+    "lastName": "lawrence",
+    "username": "maxlawrence"
+  },
+  {
+    "email": "ab@gmail.com",
+    "password": "123",
+    "firstName": "A",
+    "lastName": "B",
+    "username": "ab"
   }
 ]

@@ -1,4 +1,4 @@
-import { defineEventHandler, readBody } from 'h3';
+import { defineEventHandler, readBody, setCookie } from 'h3';
 import { writeFile, mkdir, readFile } from 'fs/promises';
 
 const userPath = './server/data/users.json';
@@ -26,6 +26,12 @@ export default defineEventHandler(async (event) => {
 
     users.push({ email, password, firstName, lastName, username});
     await writeFile(userPath, JSON.stringify(users, null, 2));
+
+    setCookie(event, 'username', username, {
+      httpOnly: true,
+      path: '/',
+      maxAge: 60 * 60 * 24,
+    })
 
     return { success: true };
   } catch (err) {

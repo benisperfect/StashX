@@ -1,24 +1,22 @@
 import tailwindcss from "@tailwindcss/vite";
 
-// https://nuxt.com/docs/api/configuration/nuxt-config
+// https://nuxt.com/docs/api/configuratio n/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2025-05-15',
-  devtools: { enabled: false },
-  css: ['@/assets/styles/main.css'],
+  compatibilityDate: "2025-05-15",
+  devtools: { enabled: true },
+  css: ["@/assets/styles/main.css"],
 
   vite: {
-    plugins: [
-      tailwindcss(),
-    ],
+    plugins: [tailwindcss()],
   },
 
   modules: [
-    'shadcn-nuxt',
+    "shadcn-nuxt",
     [
-      '@nuxtjs/color-mode',
+      "@nuxtjs/color-mode",
       {
-        classSuffix: ''
-      }
-    ]
-  ]
-})
+        classSuffix: "",
+      },
+    ],
+  ],
+});

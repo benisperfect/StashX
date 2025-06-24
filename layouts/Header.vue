@@ -13,6 +13,7 @@ const getUsergreeting = async () => {
   try {
     const res = await fetch("/api/user", {
       method: "GET",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },

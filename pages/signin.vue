@@ -22,21 +22,22 @@ const createAccount = reactive({
 
 const router = useRouter();
 
-const sumbitSignIn = async () => {
-  const res = await fetch("api/auth/signin", {
+const sumbitSignIn = async (e: Event) => {
+  e.preventDefault();
+  const result = await $fetch("/api/auth/signin", {
     method: "POST",
-    body: JSON.stringify(createAccount),
+    body: createAccount,
     headers: {
       "Content-Type": "application/json",
     },
   });
 
-  const result = await res.json();
+  // const result = await res.json();
   if (result.success) {
     alert("Login successful!");
     router.push("/");
   } else {
-    alert(result.massage || "Something went wrong. Please try again.");
+    alert("Something went wrong. Please try again.");
   }
 };
 </script>
@@ -51,67 +52,67 @@ const sumbitSignIn = async () => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <div class="grid gap-4">
-          <div class="grid grid-cols-2 gap-4">
+        <form class="space-y-6" @submit="sumbitSignIn">
+          <div class="grid gap-4">
+            <div class="grid grid-cols-2 gap-4">
+              <div class="grid gap-2">
+                <Label for="first-name">First name</Label>
+                <Input
+                  id="first-name"
+                  placeholder="Max"
+                  required
+                  v-model="createAccount.firstName"
+                />
+              </div>
+              <div class="grid gap-2">
+                <Label for="last-name">Last name</Label>
+                <Input
+                  id="last-name"
+                  placeholder="Robinson"
+                  required
+                  v-model="createAccount.lastName"
+                />
+              </div>
+            </div>
             <div class="grid gap-2">
-              <Label for="first-name">First name</Label>
+              <Label for="username">Username</Label>
               <Input
-                id="first-name"
-                placeholder="Max"
+                id="username"
+                placeholder="johndoe!23"
                 required
-                v-model="createAccount.firstName"
+                v-model="createAccount.username"
               />
             </div>
             <div class="grid gap-2">
-              <Label for="last-name">Last name</Label>
+              <Label for="email">Email</Label>
               <Input
-                id="last-name"
-                placeholder="Robinson"
+                id="email"
+                type="email"
+                placeholder="m@example.com"
+                v-model="createAccount.email"
                 required
-                v-model="createAccount.lastName"
               />
             </div>
+            <div class="grid gap-2">
+              <Label for="password">Password</Label>
+              <Input
+                id="password"
+                type="password"
+                v-model="createAccount.password"
+              />
+            </div>
+            <Button type="submit" class="w-full"> Create an account </Button>
+            <Button variant="outline" class="w-full">
+              Sign up with GitHub
+            </Button>
           </div>
-          <div class="grid gap-2">
-            <Label for="username">Username</Label>
-            <Input
-              id="username"
-              placeholder="johndoe!23"
-              required
-              v-model="createAccount.username"
-            />
+          <div class="mt-4 text-center text-sm">
+            Already have an account?
+            <NuxtLink to="/login">
+              <a href="#" class="underline"> Sign in </a>
+            </NuxtLink>
           </div>
-          <div class="grid gap-2">
-            <Label for="email">Email</Label>
-            <Input
-              id="email"
-              type="email"
-              placeholder="m@example.com"
-              v-model="createAccount.email"
-              required
-            />
-          </div>
-          <div class="grid gap-2">
-            <Label for="password">Password</Label>
-            <Input
-              id="password"
-              type="password"
-              v-model="createAccount.password"
-            />
-          </div>
-          <Button @click="sumbitSignIn" type="submit" class="w-full">
-            Create an account
-          </Button>
-          <Button variant="outline" class="w-full">
-            Sign up with GitHub
-          </Button>
-        </div>
-        <div class="mt-4 text-center text-sm">
-          Already have an account?
-          <NuxtLink to="/login">
-            <a href="#" class="underline"> Sign in </a>
-          </NuxtLink>
-        </div>
+        </form>
       </CardContent>
     </Card>
   </div>
