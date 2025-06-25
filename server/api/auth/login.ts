@@ -3,9 +3,7 @@ import { readFile } from "fs/promises";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const userPath = join(__dirname, "..", "..", "data", "users.json");
+const userPath = join(process.cwd(), "server", "data", "users.json");
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
