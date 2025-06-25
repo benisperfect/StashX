@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
 const userPath = join(process.cwd(), "server", "data", "users.json");
+console.log("User data path:", userPath)
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
