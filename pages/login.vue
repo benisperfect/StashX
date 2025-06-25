@@ -21,7 +21,7 @@ const router = useRouter();
 const submitLogin = async (e: Event) => {
   e.preventDefault();
   const res = await fetch("/api/auth/login", {
-    method: "GET",
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
