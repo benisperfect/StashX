@@ -21,7 +21,7 @@ const router = useRouter();
 const submitLogin = async (e: Event) => {
   e.preventDefault();
   const res = await fetch("/api/auth/login", {
-    method: "GET",
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
@@ -96,7 +96,9 @@ const submitLogin = async (e: Event) => {
           </div>
           <div class="space-y-4">
             <div class="space-y-2">
-              <label for="email" class="block text-sm font-medium text-gray-700">Username</label>
+              <label for="email" class="block text-sm font-medium text-gray-700"
+                >Username</label
+              >
               <Input
                 id="username"
                 type="username"
@@ -107,7 +109,11 @@ const submitLogin = async (e: Event) => {
               />
             </div>
             <div class="space-y-2">
-              <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+              <label
+                for="password"
+                class="block text-sm font-medium text-gray-700"
+                >Password</label
+              >
               <Input
                 id="password"
                 type="password"
@@ -116,17 +122,20 @@ const submitLogin = async (e: Event) => {
                 v-model="loginInfo.password"
                 autocomplete="current-password"
               />
-              <a href="#" class="text-sm underline-offset-4 hover:underline ml-2 block mt-1">
+              <a
+                href="#"
+                class="text-sm underline-offset-4 hover:underline ml-2 block mt-1"
+              >
                 Forgot your password?
               </a>
             </div>
-            <Button type="submit" class="w-full">
-              Login
-            </Button>
+            <Button type="submit" class="w-full"> Login </Button>
           </div>
           <div class="text-center text-sm">
             Don't have an account?
-            <NuxtLink to="/signin" class="underline underline-offset-4"> Sign up </NuxtLink>
+            <NuxtLink to="/signin" class="underline underline-offset-4">
+              Sign up
+            </NuxtLink>
           </div>
         </form>
       </CardContent>
