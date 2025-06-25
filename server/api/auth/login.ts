@@ -1,7 +1,12 @@
 import { defineEventHandler, readBody, setCookie } from "h3";
 import { readFile } from "fs/promises";
+import { fileURLToPath } from "url";
+import { dirname, join } from "path";
 
-const userPath = "/data/users.json";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+const userPath = join(__dirname, "..", "..", "data", "users.json");
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);

@@ -1,14 +1,14 @@
 import { defineEventHandler, readBody, setCookie } from 'h3';
 import { writeFile, mkdir, readFile } from 'fs/promises';
 
-const userPath = '/data/users.json';
+const userPath = './server/data/users.json';
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
   const { email, password, firstName, lastName, username } = body;
 
   try {
-    await mkdir('/data', { recursive: true });
+    await mkdir('./server/data', { recursive: true });
     let users: { email: string; password: string, firstName: string, lastName: string, username: string }[] = [];
 
     try {
