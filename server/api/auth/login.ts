@@ -1,18 +1,16 @@
 import { defineEventHandler, readBody, setCookie } from "h3";
 import { readFile } from "fs/promises";
-import { fileURLToPath } from "node:url";
-import { dirname, join } from "node:path";
-
-const userPath = join(process.cwd(), "server", "data", "users.json");
-console.log("User data path:", userPath)
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
   const { username, password } = body;
 
   try {
-    const file = await readFile(userPath, "utf-8");
-    const users: { username: string; password: string }[] = JSON.parse(file);
+    const storage = useStorage("assets:server");
+    const users = (await storage.getItem("users.json")) as {
+      username: string;
+      password: string;
+    }[];
 
     const user = users.find(
       (u) => u.username === username && u.password === password
