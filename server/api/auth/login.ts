@@ -35,6 +35,7 @@ export default defineEventHandler(async (event) => {
       message: "Login successful",
     };
   } catch (err) {
+    console.error("Error reading user data:", err);
     return {
       success: false,
       message: "Error reading user data",
