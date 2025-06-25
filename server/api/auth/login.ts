@@ -3,9 +3,8 @@ import { readFile } from "fs/promises";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
-
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 const userPath = join(__dirname, "..", "..", "data", "users.json");
 
 export default defineEventHandler(async (event) => {
@@ -21,11 +20,11 @@ export default defineEventHandler(async (event) => {
     );
 
     if (user) {
-      setCookie(event, 'username', user.username, {
+      setCookie(event, "username", user.username, {
         httpOnly: true,
-        path: '/',
+        path: "/",
         maxAge: 60 * 60 * 24,
-      })
+      });
     }
 
     if (!user) {
