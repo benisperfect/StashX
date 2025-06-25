@@ -1,7 +1,7 @@
 import { defineEventHandler, readBody, setCookie } from "h3";
 import { readFile } from "fs/promises";
 
-const userPath = "./server/data/users.json";
+const userPath = "/data/users.json";
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
